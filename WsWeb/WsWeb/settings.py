@@ -30,7 +30,7 @@ DEBUG = False
 
 # Vamos a permitir que todos los host sean permitidos
 # Cambiar por el nombre del dominio cuando ya sea la versión final
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'WsWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-"""
+
 # Comentamos estas lineas para la base de datos Sqlite3
 DATABASES = {
     'default': {
@@ -87,19 +87,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
+
 # Configurar para PostgreSQL
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Properties',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432'
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'Properties',
+#        'USER': 'postgres',
+#        'PASSWORD': 'root',
+#        'HOST': '127.0.0.1',
+#        'DATABASE_PORT': '5432'
+#    }
+#}
 
 
 # Password validation
@@ -137,7 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/code/static/'
+# Static root es para cuando se subirá a un servidor
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'WsWeb\static'),)
 
 # Default primary key field type
