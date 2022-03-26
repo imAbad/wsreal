@@ -24,9 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yzns50n35-4&pm4!l_$k1m9nzyb&9zred%s6-2f^*79e+76f#u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+# Desactivamos el debug para deployar la aplicación
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# Vamos a permitir que todos los host sean permitidos
+# Cambiar por el nombre del dominio cuando ya sea la versión final
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,10 +79,25 @@ WSGI_APPLICATION = 'WsWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+"""
+# Comentamos estas lineas para la base de datos Sqlite3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+"""
+# Configurar para PostgreSQL
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Properties',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432'
     }
 }
 
@@ -118,6 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/code/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'WsWeb\static'),)
 
 # Default primary key field type
